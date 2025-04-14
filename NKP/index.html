@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PlayOne GAMING </title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <h2> PlayOne Gaming </h2>
+            </div>
+            <ul>
+                <li><a href="#">Trang chủ</a></li>
+                <li id="manage-accounts-menu">Quản lý tài khoản</a></li>
+                <li><a href="#register">Đăng ký</a></li>
+                <li><a href="#login">Đăng nhập</a></li>
+                <li><a href="#lol">Nạp tiền</a></li>
+                <li><a href="#computers">Danh sách máy tính</a></li>
+                <li><a href="#services">Dịch vụ</a></li>
+                <li><a href="#transaction-history">Lich sử giao dịch </a></li>
+                <li><a href="#contact">Liên hệ</a></li>
+             
+            </ul>
+        </nav>
+    </header>
+
+    <!-- 🔥 Chỉ hiển thị doanh thu nếu là admin -->
+<section id="admin-revenue" style="display: none;">
+    <h2>📊 Doanh Thu Hệ Thống</h2>
+    <button onclick="calculateRevenue()">📢 Cập Nhật Doanh Thu</button>
+    <p id="total-revenue">Tổng Doanh Thu: 0đ</p>
+</section>
+
+
+
+
+
+    <div id="user-info" style="display: none;">
+        <p>Xin chào, <span id="logged-user"></span>!</p>
+        <p id="balance">Số dư: 0đ</p>
+        <button onclick="logout()">Đăng xuất</button>
+    </div>
+
+    <!-- Đăng ký tài khoản -->
+<section id="register" class="register">
+    <h2>Đăng ký </h2>
+    <input type="text" id="reg-username" placeholder="Nhập tên tài khoản">
+    <input type="password" id="reg-password" placeholder="Nhập mật khẩu">
+    <input type="password" id="reg-confirm-password" placeholder="Xác nhận mật khẩu">
+    <button onclick="registerAccount()">Tạo</button>
+</section>
+
+<!-- Đăng nhập -->
+<section id="login" class="login">
+    <h2>Đăng Nhập</h2>
+    <input type="text" id="login-username" placeholder="Tên tài khoản">
+    <input type="password" id="login-password" placeholder="Mật khẩu">
+    <button onclick="login()">Đăng Nhập</button>
+    <p id="login-message"></p>
+</section>
+
+<!-- Hiển thị khi đăng nhập -->
+
+
+    <!-- Nạp tài khoản -->
+   <section id="lol">
+    <div class="recharge">
+        
+        <h2>Nạp Tiền</h2>
+        <input type="text" id="username" placeholder="Nhập tên tài khoản">
+        <input type="number" id="amount" placeholder="Nhập số tiền">
+        <select id="payment-method">
+            <option value="momo">MoMo</option>
+            <option value="bank">Ngân hàng</option>
+            <option value="card">Thẻ cào</option>
+        </select>
+        <button onclick="rechargeAccount()">Nạp ngay</button>
+       
+    </div>
+
+    <section id="manage-accounts" class="manage-accounts" style="display: none;">
+        <h2>Danh Sách Tài Khoản</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Tên tài khoản</th>
+                    <th>Số dư</th>
+                </tr>
+            </thead>
+            <tbody id="account-list">
+                <!-- Danh sách tài khoản sẽ hiển thị ở đây -->
+            </tbody>
+        </table>
+    </section>
+    
+
+   </section>
+
+    <!-- Danh sách máy tính -->
+    <section id="computers" class="computers">
+    <h2>Danh sách Máy Tính</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Mã máy</th>
+                <th>Cấu hình</th>
+                <th>Trạng thái</th>
+                <th>Thao tác</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+            <!-- Máy 1 đến Máy 20 -->
+
+            
+
+            <tr>
+                <td>PC-001</td>
+                <td>Core i5, 8GB RAM, GTX 1050</td>
+                <td class="available">Có sẵn</td>
+               <td><button class="toggle-btn">Bật máy</button></td>
+            </tr>
+            <tr>
+                <td>PC-002</td>
+                <td>Core i7, 16GB RAM, GTX 1060</td>
+                <td class="busy">Đang sử dụng</td>
+                <td><button class="toggle-btn">Bật máy</button></td>
+            </tr>
+            <tr>
+                <td>PC-003</td>
+                <td>AMD Ryzen 5, 8GB RAM, RX 580</td>
+                <td class="busy">Đang sử dụng</td>
+                <td><button class="toggle-btn">Bật máy</button></td>
+            </tr>
+            <tr>
+                <td>PC-004</td>
+                <td>Core i5, 8GB RAM, GTX 1050</td>
+                <td class="available">Có sẵn</td>
+                <td><button class="toggle-btn">Bật máy</button></td>
+            </tr>
+            <tr>
+                <td>PC-005</td>
+                <td>Core i7, 16GB RAM, GTX 1060</td>
+                <td class="busy">Đang sử dụng</td>
+                <td><button class="toggle-btn">Bật máy</button></td>
+            </tr>
+            <tr>
+                <td>PC-006</td>
+                <td>AMD Ryzen 5, 8GB RAM, RX 580</td>
+                <td class="available">Có sẵn</td>
+                <td><button class="toggle-btn">Bật máy</button></td>
+            </tr>
+            <tr>
+                <td>PC-007</td>
+                <td>Core i5, 8GB RAM, GTX 1050</td>
+                <td class="busy">Đang sử dụng</td>
+                <td><button class="toggle-btn">Bật máy</button></td>
+            </tr>
+            <tr>
+                <td>PC-008</td>
+                <td>Core i7, 16GB RAM, GTX 1060</td>
+                <td class="available">Có sẵn</td>
+                <td><button class="toggle-btn">Bật máy</button></td>
+            </tr>
+            <tr>
+                <td>PC-009</td>
+                <td>AMD Ryzen 5, 8GB RAM, RX 580</td>
+                <td class="busy">Đang sử dụng</td>
+                <td><button class="toggle-btn">Bật máy</button></td>
+            </tr>
+            <tr>
+                <td>PC-010</td>
+                <td>Core i5, 8GB RAM, GTX 1050</td>
+                <td class="available">Có sẵn</td>
+                <td><button class="toggle-btn">Bật máy</button></td>
+            </tr>
+            <tr>
+                <td>PC-011</td>
+                <td>Core i7, 16GB RAM, GTX 1060</td>
+                <td class="busy">Đang sử dụng</td>
+                <td><button class="toggle-btn">Bật máy</button></td>
+            </tr>
+            <tr>
+                <td>PC-012</td>
+                <td>AMD Ryzen 5, 8GB RAM, RX 580</td>
+                <td class="available">Có sẵn</td>
+                <td><button class="toggle-btn">Bật máy</button></td>
+            </tr>
+            <tr>
+                <td>PC-013</td>
+                <td>Core i5, 8GB RAM, GTX 1050</td>
+                <td class="busy">Đang sử dụng</td>
+                <td><button class="toggle-btn">Bật máy</button></td>
+            </tr>
+            <tr>
+                <td>PC-014</td>
+                <td>Core i7, 16GB RAM, GTX 1060</td>
+                <td class="available">Có sẵn</td>
+                <td><button class="toggle-btn">Bật máy</button></td>
+            </tr>
+            <tr>
+                <td>PC-015</td>
+                <td>AMD Ryzen 5, 8GB RAM, RX 580</td>
+                <td class="maintenance">Bảo trì</td>
+                <td><button class="toggle-btn">Bật máy</button></td>
+            </tr>
+            <tr>
+                <td>PC-016</td>
+                <td>Core i5, 8GB RAM, GTX 1050</td>
+                <td class="available">Có sẵn</td>
+                <td><button class="toggle-btn">Bật máy</button></td>
+            </tr>
+            <tr>
+                <td>PC-017</td>
+                <td>Core i7, 16GB RAM, GTX 1060</td>
+                <td class="busy">Đang sử dụng</td>
+                <td><button class="toggle-btn">Bật máy</button></td>
+            </tr>
+            <tr>
+                <td>PC-018</td>
+                <td>AMD Ryzen 5, 8GB RAM, RX 580</td>
+                <td class="available">Có sẵn</td>
+                <td><button class="toggle-btn">Bật máy</button></td>
+            </tr>
+            <tr>
+                <td>PC-019</td>
+                <td>Core i5, 8GB RAM, GTX 1050</td>
+                <td class="busy">Đang sử dụng</td>
+                <td><button class="toggle-btn">Bật máy</button></td>
+            </tr>
+            <tr>
+                <td>PC-020</td>
+                <td>Core i7, 16GB RAM, GTX 1060</td>
+                <td class="available">Có sẵn</td>
+                <td><button class="toggle-btn">Bật máy</button></td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<section id="services" class="services">
+    <h2>Dịch Vụ Bán Kèm</h2>
+    <div class="service-items">
+        <div class="service-item">
+            <h3>Nước Ngọt</h3>
+            <p>Pepsi, Coca Cola, 7Up, v.v.</p>
+            <span>10.000 VND</span>
+            <button class="buy-btn">Mua</button>
+        </div>
+        <div class="service-item">
+            <h3>Thuốc Lá</h3>
+            <p>Thuốc lá Camel, 555, Marlboro, v.v.</p>
+            <span>20.000 VND</span>
+            <button class="buy-btn">Mua</button>
+        </div>
+        <div class="service-item">
+            <h3>Mì Tôm</h3>
+            <p>Mì tôm ăn liền các loại</p>
+            <span>15.000 VND</span>
+            <button class="buy-btn">Mua</button>
+        </div>
+    </div>
+</section>
+
+<section id="transaction-history">
+    <h2>Lịch sử Giao Dịch</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Loại giao dịch</th>
+                <th>Sản phẩm</th>
+                <th>Số tiền</th>
+                <th>Thời gian</th>
+            </tr>
+        </thead>
+        <tbody id="transaction-list">
+            <!-- Giao dịch sẽ được hiển thị ở đây -->
+        </tbody>
+    </table>
+</section>
+
+
+    
+
+    <!-- Liên hệ -->
+    <section id="contact" class="contact">
+        <h2>Liên hệ</h2>
+        <p>Địa chỉ: 234 Trường Chinh, HN </p>
+        <p>Số điện thoại: <a href="tel:+0123456789">0123456789</a></p>
+        <p>Email: <a href="mailto:contact@quannet.com">contact@quannet.com</a></p>
+    </section>
+
+    <footer>
+        <p>&copy; Vẫn còn yêu em.</p>
+    </footer>
+
+   
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const buyButtons = document.querySelectorAll(".buy-btn");
+
+        buyButtons.forEach(button => {
+            button.addEventListener("click", function () {
+                alert("Mua thành công!");
+            });
+        });
+    });
+</script>
+
+<script>
+   function rechargeAccount() {
+    let username = document.getElementById("username").value;
+    let amount = parseInt(document.getElementById("amount").value);
+    let balanceElement = document.getElementById("balance");
+
+    if (!username) {
+        alert("Vui lòng nhập tên tài khoản!");
+        return;
+    }
+
+    if (isNaN(amount) || amount <= 0) {
+        alert("Vui lòng nhập số tiền hợp lệ!");
+        return;
+    }
+
+    let currentBalance = parseInt(balanceElement.innerText.replace("Số dư: ", "").replace("đ", "")) || 0;
+    let newBalance = currentBalance + amount;
+    balanceElement.innerText = `Số dư: ${newBalance}đ`;
+
+    alert(`✅ Nạp thành công ${amount}đ vào tài khoản "${username}"`);
+}
+
+</script>
+
+<script>
+    function registerAccount() {
+        let username = document.getElementById("reg-username").value.trim();
+        let password = document.getElementById("reg-password").value;
+        let confirmPassword = document.getElementById("reg-confirm-password").value;
+
+        if (!username || !password || !confirmPassword) {
+            alert("Vui lòng điền đầy đủ thông tin!");
+            return;
+        }
+
+        if (password !== confirmPassword) {
+            alert("Mật khẩu xác nhận không khớp!");
+            return;
+        }
+
+        let users = JSON.parse(localStorage.getItem("users")) || {};
+        
+        if (users[username]) {
+            alert("Tài khoản đã tồn tại!");
+            return;
+        }
+        let role = username === "admin" ? "admin" : "user";
+
+        users[username] = { password: password, balance: 0 };
+        localStorage.setItem("users", JSON.stringify(users));
+
+        alert("Tạo tài khoản  thành công! Bạn có thể đăng nhập ngay bây giờ.");
+    }
+</script>
+
+<script>
+    function login() {
+        let username = document.getElementById("login-username").value.trim();
+        let password = document.getElementById("login-password").value;
+    
+        let users = JSON.parse(localStorage.getItem("users")) || {};
+    
+        if (users[username] && users[username].password === password) {
+            localStorage.setItem("loggedInUser", username);
+            updateUI();
+            alert("Đăng nhập thành công!");
+        } else {
+            alert("Sai tài khoản hoặc mật khẩu!");
+        }
+    }
+    
+    function logout() {
+        localStorage.removeItem("loggedInUser");
+        updateUI();
+    }
+    
+    function updateUI() {
+        let loggedInUser = localStorage.getItem("loggedInUser");
+        let loginSection = document.getElementById("login");
+        let userInfo = document.getElementById("user-info");
+    
+        if (loggedInUser) {
+            loginSection.style.display = "none";
+            userInfo.style.display = "block";
+            document.getElementById("logged-user").innerText = loggedInUser;
+        } else {
+            loginSection.style.display = "block";
+            userInfo.style.display = "none";
+        }
+    }
+    
+    document.addEventListener("DOMContentLoaded", updateUI);
+    
+
+</script>
+
+<script>
+
+    function rechargeAccount() {
+        let username = localStorage.getItem("loggedInUser");
+        if (!username) {
+            alert("Bạn cần đăng nhập để nạp tiền!");
+            return;
+        }
+    
+        let amount = parseInt(document.getElementById("amount").value);
+        let balanceElement = document.getElementById("balance");
+    
+        if (isNaN(amount) || amount <= 0) {
+            alert("Vui lòng nhập số tiền hợp lệ!");
+            return;
+        }
+    
+        let users = JSON.parse(localStorage.getItem("users")) || {};
+        if (!users[username]) {
+            alert("Tài khoản không tồn tại!");
+            return;
+        }
+    
+        users[username].balance = (users[username].balance || 0) + amount;
+        localStorage.setItem("users", JSON.stringify(users));
+    
+        // Ghi lịch sử nạp tiền
+        let transactions = JSON.parse(localStorage.getItem("transactions")) || [];
+        transactions.push({ user: username, type: "Nạp tiền", amount: amount, date: new Date().toLocaleString() });
+        localStorage.setItem("transactions", JSON.stringify(transactions));
+    
+        balanceElement.innerText = `Số dư: ${users[username].balance}đ`;
+        alert(`✅ Nạp thành công ${amount}đ vào tài khoản "${username}"`);
+    }
+    
+</script>
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+    const buyButtons = document.querySelectorAll(".buy-btn");
+
+    buyButtons.forEach(button => {
+        button.addEventListener("click", function () {
+            let loggedInUser = localStorage.getItem("loggedInUser");
+            if (!loggedInUser) {
+                alert("Bạn cần đăng nhập để mua hàng!");
+                return;
+            }
+
+            let price = parseInt(this.previousElementSibling.innerText.replace(" VND", "").replace(".", ""));
+            let itemName = this.previousElementSibling.previousElementSibling.innerText; // Tên sản phẩm
+            let users = JSON.parse(localStorage.getItem("users")) || {};
+
+            if (users[loggedInUser].balance < price) {
+                alert("Số dư không đủ!");
+                return;
+            }
+
+            users[loggedInUser].balance -= price;
+            localStorage.setItem("users", JSON.stringify(users));
+
+            // Lưu lịch sử mua hàng
+            let transactions = JSON.parse(localStorage.getItem("transactions")) || [];
+            transactions.push({ user: loggedInUser, type: "Mua hàng", item: itemName, amount: -price, date: new Date().toLocaleString() });
+            localStorage.setItem("transactions", JSON.stringify(transactions));
+
+            updateUI();
+            loadTransactionHistory(); // Cập nhật lịch sử sau khi mua
+            alert(`🛒 Bạn đã mua "${itemName}" thành công!`);
+        });
+    });
+});
+
+
+</script>
+
+<script>
+function updateUI() {
+    let loggedInUser = localStorage.getItem("loggedInUser");
+    let loginSection = document.getElementById("login");
+    let userInfo = document.getElementById("user-info");
+    let balanceElement = document.getElementById("balance");
+    let manageAccountsMenu = document.getElementById("manage-accounts-menu");
+    let manageAccountsSection = document.getElementById("manage-accounts");
+    let users = JSON.parse(localStorage.getItem("users")) || {};
+    let adminRevenueSection = document.getElementById("admin-revenue");
+
+     if (loggedInUser && users[loggedInUser]?.role === "admin") {
+        adminRevenueSection.style.display = "block"; // Hiện phần doanh thu
+        calculateRevenue(); // Tính doanh thu ngay khi admin đăng nhập
+    } else {
+        adminRevenueSection.style.display = "none"; // Ẩn phần doanh thu nếu không phải admin
+    }
+
+    
+
+    if (loggedInUser) {
+        let users = JSON.parse(localStorage.getItem("users")) || {};
+        let user = users[loggedInUser];
+
+        if (user) {
+            document.getElementById("logged-user").innerText = loggedInUser;
+            balanceElement.innerText = `Số dư: ${user.balance}đ`;
+
+            // 🔥 Kiểm tra nếu tài khoản có quyền admin
+            if (user.role === "admin") {
+                manageAccountsMenu.style.display = "block";  // Hiện menu quản lý tài khoản
+                manageAccountsSection.style.display = "block"; // Hiện danh sách tài khoản
+                loadAccountList();
+            } else {
+                manageAccountsMenu.style.display = "none";
+                manageAccountsSection.style.display = "none";
+            }
+        }
+        
+        loginSection.style.display = "none";
+        userInfo.style.display = "block";
+    } else {
+        loginSection.style.display = "block";
+        userInfo.style.display = "none";
+        balanceElement.innerText = "Số dư: 0đ";
+        manageAccountsMenu.style.display = "none";
+        manageAccountsSection.style.display = "none";
+    }
+}
+
+// Gọi lại updateUI() khi trang tải
+document.addEventListener("DOMContentLoaded", updateUI);
+
+
+</script>
+
+<script>
+function login() {
+    let username = document.getElementById("login-username").value.trim();
+    let password = document.getElementById("login-password").value;
+
+    let users = JSON.parse(localStorage.getItem("users")) || {};
+
+    if (users[username] && users[username].password === password) {
+        localStorage.setItem("loggedInUser", username);
+        alert("Đăng nhập thành công!");
+        updateUI(); // Cập nhật giao diện ngay sau khi đăng nhập
+    } else {
+        alert("Sai tài khoản hoặc mật khẩu!");
+    }
+}
+
+
+</script>
+
+<script>
+   function loadTransactionHistory(username = null) {
+    let loggedInUser = localStorage.getItem("loggedInUser");
+    if (!loggedInUser) {
+        document.getElementById("transaction-list").innerHTML = "<tr><td colspan='4'>Bạn cần đăng nhập để xem lịch sử giao dịch.</td></tr>";
+        return;
+    }
+
+    let users = JSON.parse(localStorage.getItem("users")) || {};
+    let transactions = JSON.parse(localStorage.getItem("transactions")) || [];
+    let currentUser = username || loggedInUser; // Nếu admin, cho phép xem của user khác
+
+    if (!users[currentUser]) {
+        alert("⚠️ Tài khoản không tồn tại!");
+        return;
+    }
+
+    let userTransactions = transactions.filter(tx => tx.user === currentUser);
+    let tableBody = document.getElementById("transaction-list");
+    tableBody.innerHTML = "";
+
+    if (userTransactions.length === 0) {
+        tableBody.innerHTML = "<tr><td colspan='4'>Không có giao dịch nào.</td></tr>";
+        return;
+    }
+
+    userTransactions.forEach((tx, index) => {
+        let row = document.createElement("tr");
+        row.innerHTML = `
+            <td>${tx.type}</td>
+            <td>${tx.item || "N/A"}</td>
+            <td>${tx.amount}đ</td>
+            <td>${tx.date}</td>
+            ${users[loggedInUser].role === "admin" ? `<td><button onclick="deleteTransaction(${index})">❌ Xóa</button></td>` : ""}
+        `;
+        tableBody.appendChild(row);
+    });
+}
+
+function deleteTransaction(index) {
+    let transactions = JSON.parse(localStorage.getItem("transactions")) || [];
+    transactions.splice(index, 1);
+    localStorage.setItem("transactions", JSON.stringify(transactions));
+    alert("✅ Giao dịch đã được xóa!");
+    loadTransactionHistory();
+}
+
+
+</script>
+
+<script>
+    function registerUser() {
+    let username = document.getElementById("register-username").value;
+    let password = document.getElementById("register-password").value;
+    
+    if (!username || !password) {
+        alert("Vui lòng nhập đầy đủ thông tin!");
+        return;
+    }
+
+    let users = JSON.parse(localStorage.getItem("users")) || {};
+
+    if (users[username]) {
+        alert("Tài khoản đã tồn tại!");
+        return;
+    }
+
+    // Nếu đăng ký với username là "admin", sẽ có quyền admin
+    let isAdmin = username === "admin";
+
+    users[username] = {
+        password: password,
+        balance: 1000000, // Khởi tạo số dư cho admin
+        role: isAdmin ? "admin" : "user"
+    };
+
+    localStorage.setItem("users", JSON.stringify(users));
+    alert(`Đăng ký thành công! Bạn có thể đăng nhập ngay.`);
+}
+
+</script>
+<script>
+function loadAccountList() {
+    let users = JSON.parse(localStorage.getItem("users")) || {};
+    let tableBody = document.getElementById("account-list");
+    tableBody.innerHTML = "";
+
+    if (Object.keys(users).length === 0) {
+        tableBody.innerHTML = "<tr><td colspan='3'>Chưa có tài khoản nào.</td></tr>";
+        return;
+    }
+
+    for (let username in users) {
+        let row = document.createElement("tr");
+        row.innerHTML = `
+            <td>${username}</td>
+            <td>${users[username].balance}đ</td>
+            <td><button onclick="editBalance('${username}')">🔧 Chỉnh sửa</button></td>
+        `;
+        tableBody.appendChild(row);
+    }
+}
+
+function editBalance(username) {
+    let users = JSON.parse(localStorage.getItem("users"));
+    let newBalance = prompt(`Nhập số dư mới cho tài khoản ${username}:`, users[username].balance);
+    
+    if (newBalance !== null) {
+        newBalance = parseInt(newBalance);
+        if (isNaN(newBalance) || newBalance < 0) {
+            alert("⚠️ Số dư không hợp lệ!");
+            return;
+        }
+        users[username].balance = newBalance;
+        localStorage.setItem("users", JSON.stringify(users));
+        alert("✅ Cập nhật số dư thành công!");
+        loadAccountList();
+    }
+}
+
+
+</script>
+
+
+
+<script>
+ document.addEventListener("DOMContentLoaded", function () {
+    let users = JSON.parse(localStorage.getItem("users")) || {};
+    let adminUsername = "superadmin";  // Thay đổi tên nếu cần
+    let adminPassword = "admin123";    // Đặt mật khẩu mạnh hơn
+
+    if (!users[adminUsername]) {
+        users[adminUsername] = { 
+            password: adminPassword, 
+            balance: 1000000, 
+            role: "admin" 
+        };
+        localStorage.setItem("users", JSON.stringify(users));
+        console.log(`✅ Tài khoản admin '${adminUsername}' đã được tạo!`);
+    }
+});
+
+
+</script>
+
+<script>
+    function calculateRevenue() {
+    let transactions = JSON.parse(localStorage.getItem("transactions")) || [];
+    
+    let totalRevenue = transactions
+        .filter(tx => tx.type === "Nạp tiền") // Chỉ lấy giao dịch nạp tiền
+        .reduce((sum, tx) => sum + tx.amount, 0); // Cộng dồn số tiền
+
+    document.getElementById("total-revenue").innerText = `Tổng Doanh Thu: ${totalRevenue}đ`;
+}
+
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Lấy danh sách tất cả các nút Bật/Tắt máy
+        const buttons = document.querySelectorAll(".toggle-btn");
+    
+        buttons.forEach(button => {
+            button.addEventListener("click", function () {
+                // Lấy hàng chứa thông tin máy
+                const row = this.parentElement.parentElement;
+                const statusCell = row.querySelector("td:nth-child(3)"); // Cột trạng thái
+    
+                if (statusCell.innerText === "Có sẵn") {
+                    statusCell.innerText = "Đang sử dụng";
+                    statusCell.classList.remove("available");
+                    statusCell.classList.add("busy");
+                    this.innerText = "Tắt máy";
+                } else {
+                    statusCell.innerText = "Có sẵn";
+                    statusCell.classList.remove("busy");
+                    statusCell.classList.add("available");
+                    this.innerText = "Bật máy";
+                }
+            });
+        });
+    });
+    </script>
+    
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>
